@@ -1,3 +1,3 @@
-# localrepo
+# Localrepo
 
-<p>Thos is just a practice repo for learing.</p>
+<p>This is just a practice repo for learing.</p>
