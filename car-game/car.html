@@ -38,6 +38,32 @@
             text-align: center;
             display: none;
         }
+        #mobileControls {
+            display: none;
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            text-align: center;
+        }
+        .controlButton {
+            background-color: rgba(255, 255, 255, 0.5);
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+        @media (max-width: 768px) {
+            #mobileControls {
+                display: block;
+            }
+        }
     </style>
 </head>
 <body>
@@ -49,6 +75,10 @@
             <p>Your score: <span id="finalScore"></span></p>
             <button onclick="restartGame()">Play Again</button>
         </div>
+        <div id="mobileControls">
+            <button id="leftButton" class="controlButton">←</button>
+            <button id="rightButton" class="controlButton">→</button>
+        </div>
     </div>
     <script>
         const canvas = document.getElementById('gameCanvas');
@@ -56,6 +86,8 @@
         const scoreElement = document.getElementById('score');
         const gameOverElement = document.getElementById('gameOver');
         const finalScoreElement = document.getElementById('finalScore');
+        const leftButton = document.getElementById('leftButton');
+        const rightButton = document.getElementById('rightButton');
 
         canvas.width = 400;
         canvas.height = 600;
@@ -192,6 +224,12 @@
         const keys = {};
         window.addEventListener('keydown', e => keys[e.code] = true);
         window.addEventListener('keyup', e => keys[e.code] = false);
+
+        // Mobile controls
+        leftButton.addEventListener('touchstart', () => keys.ArrowLeft = true);
+        leftButton.addEventListener('touchend', () => keys.ArrowLeft = false);
+        rightButton.addEventListener('touchstart', () => keys.ArrowRight = true);
+        rightButton.addEventListener('touchend', () => keys.ArrowRight = false);
 
         function gameOver() {
             gameRunning = false;
